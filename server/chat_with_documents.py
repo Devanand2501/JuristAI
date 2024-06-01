@@ -5,7 +5,9 @@ from langchain.schema import BaseRetriever
 from utils import MEMORY
 from langchain_pinecone import PineconeVectorStore
 from prompt import user_prompt
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
 
@@ -24,15 +26,15 @@ LLM = HuggingFaceEndpoint(
     repetition_penalty = 1.03,
     max_new_tokens = 1024,
     top_k = 30,
-    huggingfacehub_api_token = "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")
+    huggingfacehub_api_token = os.getenv("HUGGINGFACE_API_KEY"))
 
 
 def configure_retriever():
-    # embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key='AIzaSyAt5b8fk6CKsLjyW_SqxrnGq28dgEdOYJU')
+    # embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=os.getenv("GOOGLE_API_KEY"))
     # alternatively: 
     index_name = "drifko-legal-chatbot"
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-l6-v2")
-    docsearch = PineconeVectorStore(index_name=index_name, embedding=embeddings, pinecone_api_key= "5beeb765-a71b-4dfe-b42b-8dc4ca3f14e0")
+    docsearch = PineconeVectorStore(index_name=index_name, embedding=embeddings, pinecone_api_key= os.getenv("PINECONE_API_KEY"))
     retriever = docsearch.as_retriever(search_kwargs = {'k':2})
     return retriever
 

@@ -34,9 +34,11 @@ JuristAI is a conversational AI bot specialized in legal matters. It provides re
        ```bash
        cd server
        ```
-    b. Activate the virtual environment:
+    b. Create and activate the virtual environment:
        ```bash
-       source venv/Scripts/activate
+       python -m venv venv
+       source venv/Scripts/activate  # On Windows
+       source venv/bin/activate  # On macOS/Linux
        ```
     c. Install dependencies:
        ```bash
@@ -57,6 +59,14 @@ JuristAI is a conversational AI bot specialized in legal matters. It provides re
 ## Contribution
 
 Contributions to JuristAI are welcome! Whether it's bug fixes, feature enhancements, or documentation improvements, feel free to open issues or pull requests.
+
+### Contribution Guidelines
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a Pull Request.
 
 ## License
 
